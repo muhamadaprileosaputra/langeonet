@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANGEO NET — Internet Hemat untuk Semua</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',
+                            400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',
+                            800:'#075985',900:'#0c4a6e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+        @keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+        @keyframes pulse-ring{0%,100%{transform:scale(.92);opacity:.45}50%{transform:scale(1.06);opacity:.12}}
+        @keyframes signal-wave{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.2);opacity:0}}
+        @keyframes dash{to{stroke-dashoffset:-20}}
+
+        .float-1{animation:float 4s ease-in-out infinite}
+        .float-2{animation:float2 5s ease-in-out infinite .4s}
+        .float-3{animation:float3 6s ease-in-out infinite .8s}
+        .pulse-ring{animation:pulse-ring 3s ease-in-out infinite}
+        .signal-wave-1{animation:signal-wave 2s ease-out infinite}
+        .signal-wave-2{animation:signal-wave 2s ease-out infinite .6s}
+        .signal-wave-3{animation:signal-wave 2s ease-out infinite 1.2s}
+        .dash-animate{animation:dash 1.5s linear infinite}
+
+        .gradient-text{background:linear-gradient(135deg,#0ea5e9,#0284c7,#0369a1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .dot-bg{background-image:radial-gradient(rgba(14,165,233,.05) 1px,transparent 1px);background-size:22px 22px}
+        .grid-bg{background-image:linear-gradient(rgba(14,165,233,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,.025) 1px,transparent 1px);background-size:36px 36px}
+
+        .card-lift{transition:transform .35s ease,box-shadow .35s ease}
+        .card-lift:hover{transform:translateY(-5px);box-shadow:0 16px 40px -10px rgba(14,165,233,.16)}
+
+        .nav-scrolled{background:rgba(255,255,255,.97)!important;backdrop-filter:blur(14px);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+
+        .btn-shine{position:relative;overflow:hidden}
+        .btn-shine::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-25deg);transition:left .55s ease}
+        .btn-shine:hover::after{left:120%}
+
+        .mobile-menu{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s ease;opacity:0}
+        .mobile-menu.open{max-height:400px;opacity:1}
+        .menu-btn-burger{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#f0f9ff;border:1.5px solid #bae6fd;cursor:pointer;transition:all .2s ease}
+        .menu-btn-burger:hover{background:#e0f2fe;border-color:#7dd3fc}
+        .menu-btn-burger:active{transform:scale(.93);background:#bae6fd}
+        .mobile-menu a.menu-link{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:500;color:#374151;transition:all .2s ease}
+        .mobile-menu a.menu-link:hover,.mobile-menu a.menu-link:active{background:#f0f9ff;color:#0284c7}
+        .mobile-menu a.menu-link i{width:18px;height:18px;color:#0ea5e9;flex-shrink:0}
+
+        .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+    </style>
+</head>
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+<!-- ========== NAVBAR ========== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="flex items-center justify-between h-16">
+            <a href="#" class="flex items-center gap-2">
+                <div class="relative w-8 h-8 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg flex items-center justify-center shadow-sm shadow-brand-200">
+                    <i data-lucide="wifi" class="w-3.5 h-3.5 text-white"></i>
+                    <div class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full border-2 border-white"></div>
+                </div>
+                <span class="text-base font-bold text-gray-900">LANGEO</span><span class="text-base font-bold gradient-text"> NET</span>
+            </a>
+            <div class="hidden md:flex items-center gap-0.5">
+                <a href="#beranda" class="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Beranda</a>
+                <a href="#layanan" class="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Layanan</a>
+                <a href="#paket" class="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Paket</a>
+                <a href="#keunggulan" class="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Keunggulan</a>
+                <a href="#kontak" class="px-3 py-1.5 text-[13px] font-medium text-gray-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Kontak</a>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20daftar%20Paket%20Hemat%20Rp50.000" target="_blank" class="hidden sm:inline-flex btn-shine items-center gap-1.5 bg-gradient-to-r from-brand-500 to-brand-600 text-white text-[12px] font-semibold px-4 py-2 rounded-lg hover:from-brand-600 hover:to-brand-700 transition-all shadow-sm shadow-brand-200">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Daftar via WA
+                </a>
+                <button id="menu-btn" class="menu-btn-burger md:hidden" aria-label="Menu">
+                    <svg id="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <svg id="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+            <div class="pb-5 pt-2 space-y-1 border-t-2 border-brand-100 bg-white/95 backdrop-blur-md -mx-5 px-5 rounded-b-2xl shadow-lg shadow-brand-100/30">
+                <a href="#beranda" onclick="closeMenu()" class="menu-link"><i data-lucide="home"></i> Beranda</a>
+                <a href="#layanan" onclick="closeMenu()" class="menu-link"><i data-lucide="layers"></i> Layanan</a>
+                <a href="#paket" onclick="closeMenu()" class="menu-link"><i data-lucide="package"></i> Paket</a>
+                <a href="#keunggulan" onclick="closeMenu()" class="menu-link"><i data-lucide="award"></i> Keunggulan</a>
+                <a href="#kontak" onclick="closeMenu()" class="menu-link"><i data-lucide="map-pin"></i> Kontak</a>
+                <div class="pt-2">
+                    <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20daftar%20Paket%20Hemat%20Rp50.000" target="_blank" onclick="closeMenu()" class="flex items-center justify-center gap-2 bg-gradient-to-r from-brand-500 to-brand-600 text-white text-sm font-bold px-5 py-3 rounded-xl w-full shadow-lg shadow-brand-200 hover:from-brand-600 hover:to-brand-700 transition-all active:scale-[0.97]">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        Daftar via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="beranda" class="relative min-h-screen flex items-center grid-bg overflow-hidden pt-16">
+    <div class="absolute top-10 right-0 w-96 h-96 bg-brand-100 rounded-full blur-[120px] opacity-35 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-brand-50 rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-5 w-full py-16 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-100 text-brand-700 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-6">
+                    <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-500"></span></span>
+                    Internet Aktif 06:00 – 22:00 WIB
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.08] mb-4">
+                    Internet Hemat<br><span class="gradient-text">untuk Semua</span>
+                </h1>
+                <p class="text-[15px] text-gray-500 leading-relaxed mb-8 max-w-sm">Nikmati koneksi internet stabil dengan harga terjangkau. Dirancang untuk belajar, browsing, dan media sosial.</p>
+                <div class="flex flex-wrap gap-3 mb-10">
+                    <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20daftar%20Paket%20Hemat%20Rp50.000" target="_blank" class="btn-shine inline-flex items-center gap-2 bg-gradient-to-r from-brand-500 to-brand-600 text-white font-semibold px-6 py-3 rounded-xl hover:from-brand-600 hover:to-brand-700 transition-all shadow-lg shadow-brand-200 hover:shadow-brand-300 hover:scale-[1.02]">
+                        <i data-lucide="rocket" class="w-4 h-4"></i> Daftar Sekarang
+                    </a>
+                    <a href="#layanan" class="inline-flex items-center gap-2 bg-white text-gray-700 font-semibold px-6 py-3 rounded-xl border border-gray-200 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700 transition-all shadow-sm">
+                        <i data-lucide="info" class="w-4 h-4"></i> Pelajari Lebih
+                    </a>
+                </div>
+                <div class="flex gap-7">
+                    <div><p class="text-xl font-bold text-gray-900">1+</p><p class="text-[10px] text-gray-400 font-medium mt-0.5">Pelanggan Aktif</p></div>
+                    <div class="w-px bg-gray-200"></div>
+                    <div><p class="text-xl font-bold text-gray-900">99.9%</p><p class="text-[10px] text-gray-400 font-medium mt-0.5">Uptime Server</p></div>
+                    <div class="w-px bg-gray-200"></div>
+                    <div><p class="text-xl font-bold text-gray-900">24/7</p><p class="text-[10px] text-gray-400 font-medium mt-0.5">Support Online</p></div>
+                </div>
+            </div>
+            <div class="relative flex items-center justify-center">
+                <div class="absolute w-64 h-64 bg-gradient-to-br from-brand-100 to-brand-50 rounded-full opacity-45"></div>
+                <div class="absolute w-48 h-48 bg-gradient-to-tr from-brand-200/25 to-brand-100/40 rounded-full pulse-ring"></div>
+                <div class="relative z-10 float-1">
+                    <div class="w-56 h-44 bg-gradient-to-br from-white to-brand-50 rounded-2xl shadow-xl shadow-brand-200/35 border border-brand-100/40 flex flex-col items-center justify-center gap-3 p-5">
+                        <div class="relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-brand-400 to-brand-600 rounded-xl flex items-center justify-center shadow-md shadow-brand-300/40">
+                                <i data-lucide="router" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div class="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full border-2 border-brand-300 signal-wave-1"></div>
+                            <div class="absolute -top-4 -right-4 w-4 h-4 rounded-full border-2 border-brand-200 signal-wave-2"></div>
+                            <div class="absolute -top-6.5 -right-6.5 w-4 h-4 rounded-full border-2 border-brand-100 signal-wave-3"></div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-[13px] font-bold text-gray-800">LANGEO NET</p>
+                            <p class="text-[10px] text-brand-500 font-medium">Connected • WiFi 4 • 10 Mbps</p>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" style="animation-delay:.3s"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" style="animation-delay:.6s"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" style="animation-delay:.9s"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -left-1 top-4 float-2 z-20">
+                    <div class="bg-white rounded-lg shadow-md shadow-gray-100/60 border border-gray-100 px-2.5 py-2 flex items-center gap-2">
+                        <div class="w-7 h-7 bg-green-100 rounded-md flex items-center justify-center"><i data-lucide="wifi" class="w-3.5 h-3.5 text-green-600"></i></div>
+                        <div><p class="text-[10px] font-semibold text-gray-800">WiFi 4</p><p class="text-[8px] text-gray-400">Stabil & Cepat</p></div>
+                    </div>
+                </div>
+                <div class="absolute -right-1 bottom-12 float-3 z-20">
+                    <div class="bg-white rounded-lg shadow-md shadow-gray-100/60 border border-gray-100 px-2.5 py-2 flex items-center gap-2">
+                        <div class="w-7 h-7 bg-brand-100 rounded-md flex items-center justify-center"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-600"></i></div>
+                        <div><p class="text-[10px] font-semibold text-gray-800">Aman</p><p class="text-[8px] text-gray-400">Terproteksi</p></div>
+                    </div>
+                </div>
+                <div class="absolute left-1 bottom-1 float-2 z-20" style="animation-delay:1.5s">
+                    <div class="bg-white rounded-lg shadow-md shadow-gray-100/60 border border-gray-100 px-2.5 py-2 flex items-center gap-2">
+                        <div class="w-7 h-7 bg-purple-100 rounded-md flex items-center justify-center"><i data-lucide="infinity" class="w-3.5 h-3.5 text-purple-600"></i></div>
+                        <div><p class="text-[10px] font-semibold text-gray-800">Unlimited</p><p class="text-[8px] text-gray-400">Tanpa FUP</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== LAYANAN ========== -->
+<section id="layanan" class="py-16 lg:py-24 dot-bg">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="text-center max-w-md mx-auto mb-12 reveal">
+            <div class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-600 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-3"><i data-lucide="layers" class="w-3 h-3"></i> Layanan Kami</div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-2.5">Solusi Internet <span class="gradient-text">Terlengkap</span></h2>
+            <p class="text-[13px] text-gray-500 leading-relaxed">Layanan internet berkualitas untuk kebutuhan rumah tangga Anda.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm group text-center">
+                <div class="w-11 h-11 bg-brand-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-brand-100 group-hover:scale-110 transition-all"><i data-lucide="home" class="w-5 h-5 text-brand-600"></i></div>
+                <h3 class="text-[14px] font-bold text-gray-900 mb-1">Internet Rumah</h3>
+                <p class="text-[12px] text-gray-500 leading-relaxed">Koneksi stabil untuk keluarga, belajar dan browsing.</p>
+            </div>
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm group text-center">
+                <div class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-green-100 group-hover:scale-110 transition-all"><i data-lucide="wifi" class="w-5 h-5 text-green-600"></i></div>
+                <h3 class="text-[14px] font-bold text-gray-900 mb-1">WiFi 4 Router</h3>
+                <p class="text-[12px] text-gray-500 leading-relaxed">Router WiFi 4 berkualitas, coverage luas di rumah.</p>
+            </div>
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm group text-center">
+                <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-100 group-hover:scale-110 transition-all"><i data-lucide="infinity" class="w-5 h-5 text-purple-600"></i></div>
+                <h3 class="text-[14px] font-bold text-gray-900 mb-1">Unlimited</h3>
+                <p class="text-[12px] text-gray-500 leading-relaxed">Akses tanpa batas kuota, gunakan sepuasnya.</p>
+            </div>
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm group text-center">
+                <div class="w-11 h-11 bg-orange-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-100 group-hover:scale-110 transition-all"><i data-lucide="headset" class="w-5 h-5 text-orange-600"></i></div>
+                <h3 class="text-[14px] font-bold text-gray-900 mb-1">Support 24/7</h3>
+                <p class="text-[12px] text-gray-500 leading-relaxed">Tim teknis siap bantu via WhatsApp kapan saja.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PAKET ========== -->
+<section id="paket" class="py-16 lg:py-24 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-brand-100/25 rounded-full blur-[90px] pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-5 relative z-10">
+        <div class="text-center max-w-md mx-auto mb-12 reveal">
+            <div class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-600 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-3"><i data-lucide="package" class="w-3 h-3"></i> Paket Internet</div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-2.5">Satu Paket, <span class="gradient-text">Semua Kebutuhan</span></h2>
+            <p class="text-[13px] text-gray-500 leading-relaxed">Harga terjangkau, kualitas premium. Cocok untuk belajar, browsing, dan media sosial.</p>
+        </div>
+        <div class="max-w-sm mx-auto reveal">
+            <div class="relative card-lift">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                    <span class="bg-gradient-to-r from-brand-500 to-brand-600 text-white text-[10px] font-bold px-3.5 py-1 rounded-full shadow-sm shadow-brand-200 flex items-center gap-1"><i data-lucide="star" class="w-2.5 h-2.5 fill-current"></i> Paket Terbaik</span>
+                </div>
+                <div class="bg-white rounded-2xl border-2 border-brand-200 shadow-xl shadow-brand-100/40 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-500 to-brand-600 px-6 pt-8 pb-8 text-white text-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-center gap-1.5 mb-1">
+                                <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+                                <span class="text-[13px] font-semibold">Paket Hemat</span>
+                            </div>
+                            <div class="flex items-baseline justify-center gap-0.5 mt-3">
+                                <span class="text-sm font-medium opacity-80">Rp</span>
+                                <span class="text-4xl font-extrabold">50.000</span>
+                            </div>
+                            <p class="text-[13px] opacity-80 mt-0.5">per bulan</p>
+                        </div>
+                    </div>
+                    <div class="px-6 -mt-4 relative z-10">
+                        <div class="bg-white rounded-xl px-4 py-3 flex items-center gap-3 shadow-md shadow-gray-100/50 border border-gray-100">
+                            <div class="w-9 h-9 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0"><i data-lucide="gauge" class="w-4 h-4 text-brand-600"></i></div>
+                            <div>
+                                <p class="text-[10px] text-gray-400">Kecepatan</p>
+                                <p class="text-[14px] font-bold text-gray-900">Up To 10 Mbps</p>
+                            </div>
+                            <div class="ml-auto bg-green-50 text-green-700 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5"><i data-lucide="wifi" class="w-2.5 h-2.5"></i> WiFi 4</div>
+                        </div>
+                    </div>
+                    <div class="px-6 pt-5 pb-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Unlimited Internet</span></li>
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Koneksi Stabil</span></li>
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Jam Akses: <span class="font-semibold text-gray-800">06:00 – 22:00 WIB</span></span></li>
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Cocok untuk Belajar, Browsing & Media Sosial</span></li>
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Free Instalasi & Router WiFi 4</span></li>
+                            <li class="flex items-start gap-2.5"><div class="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-2.5 h-2.5 text-green-600"></i></div><span class="text-[13px] text-gray-600">Support 24/7 via WhatsApp</span></li>
+                        </ul>
+                        <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20daftar%20Paket%20Hemat%20Rp50.000" target="_blank" class="btn-shine mt-6 w-full bg-gradient-to-r from-brand-500 to-brand-600 text-white font-semibold py-3 rounded-xl hover:from-brand-600 hover:to-brand-700 transition-all shadow-lg shadow-brand-200 hover:shadow-brand-300 hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Daftar via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KEUNGGULAN ========== -->
+<section id="keunggulan" class="py-16 lg:py-24 relative">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div class="relative reveal order-2 lg:order-1">
+                <div class="bg-gradient-to-br from-brand-50 to-white rounded-2xl border border-brand-100 p-6 lg:p-8 overflow-hidden relative">
+                    <div class="absolute top-2 right-2 w-28 h-28 bg-brand-100/25 rounded-full blur-[40px] pointer-events-none"></div>
+                    <svg viewBox="0 0 320 230" class="w-full h-auto relative z-10" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="160" y1="115" x2="60" y2="45" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <line x1="160" y1="115" x2="260" y2="45" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <line x1="160" y1="115" x2="50" y2="180" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <line x1="160" y1="115" x2="270" y2="180" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <line x1="160" y1="115" x2="160" y2="30" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <line x1="160" y1="115" x2="160" y2="205" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
+                        <circle cx="160" cy="115" r="22" fill="url(#cg)"/>
+                        <circle cx="160" cy="115" r="30" fill="none" stroke="#0ea5e9" stroke-width="1" opacity="0.2" class="pulse-ring"/>
+                        <text x="160" y="112" text-anchor="middle" fill="white" font-size="8" font-weight="700" font-family="Inter">LANGEO</text>
+                        <text x="160" y="122" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7" font-family="Inter">NET</text>
+                        <circle cx="60" cy="45" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="60" y="49" text-anchor="middle" font-size="12">📶</text>
+                        <circle cx="260" cy="45" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="260" y="49" text-anchor="middle" font-size="12">💻</text>
+                        <circle cx="160" cy="30" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="160" y="34" text-anchor="middle" font-size="12">📱</text>
+                        <circle cx="50" cy="180" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="50" y="184" text-anchor="middle" font-size="12">📺</text>
+                        <circle cx="270" cy="180" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="270" y="184" text-anchor="middle" font-size="12">🎮</text>
+                        <circle cx="160" cy="205" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="160" y="209" text-anchor="middle" font-size="12">☁️</text>
+                        <defs><linearGradient id="cg" x1="138" y1="93" x2="182" y2="137"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#0284c7"/></linearGradient></defs>
+                    </svg>
+                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-sm border border-brand-100 z-20">
+                        <div class="flex items-center gap-1"><div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div><span class="text-[9px] font-semibold text-gray-700">Latency: 50ms</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal order-1 lg:order-2">
+                <div class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-600 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-3"><i data-lucide="award" class="w-3 h-3"></i> Mengapa LANGEO NET?</div>
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-4">Keunggulan yang <span class="gradient-text">Bisa Dirasakan</span></h2>
+                <p class="text-[13px] text-gray-500 leading-relaxed mb-7">Kami tidak hanya menjanjikan kecepatan, tapi kualitas koneksi yang konsisten setiap hari.</p>
+                <div class="space-y-4">
+                    <div class="flex gap-3">
+                        <div class="w-9 h-9 bg-brand-50 rounded-lg flex items-center justify-center flex-shrink-0"><i data-lucide="signal" class="w-4 h-4 text-brand-600"></i></div>
+                        <div><h4 class="text-[13px] font-bold text-gray-900 mb-0.5">Koneksi Super Stabil</h4><p class="text-[12px] text-gray-500 leading-relaxed">Jaringan berkualitas memastikan koneksi tetap stabil di jam sibuk.</p></div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0"><i data-lucide="infinity" class="w-4 h-4 text-green-600"></i></div>
+                        <div><h4 class="text-[13px] font-bold text-gray-900 mb-0.5">True Unlimited</h4><p class="text-[12px] text-gray-500 leading-relaxed">Tanpa FUP, tanpa pembatasan kuota. Gunakan sepuasnya.</p></div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="w-9 h-9 bg-purple-50 rounded-lg flex items-center justify-center flex-shrink-0"><i data-lucide="shield-check" class="w-4 h-4 text-purple-600"></i></div>
+                        <div><h4 class="text-[13px] font-bold text-gray-900 mb-0.5">Jaringan Aman</h4><p class="text-[12px] text-gray-500 leading-relaxed">Proteksi keamanan untuk data dan privasi Anda.</p></div>
+                    </div>
+                    <div class="flex gap-3">
+                        <div class="w-9 h-9 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0"><i data-lucide="clock" class="w-4 h-4 text-orange-600"></i></div>
+                        <div><h4 class="text-[13px] font-bold text-gray-900 mb-0.5">Instalasi Cepat</h4><p class="text-[12px] text-gray-500 leading-relaxed">Pemasangan 1-2 hari kerja oleh teknisi profesional.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== TESTIMONI ========== -->
+<section class="py-16 lg:py-24 bg-gray-50/80 dot-bg">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="text-center max-w-md mx-auto mb-12 reveal">
+            <div class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-600 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-3"><i data-lucide="message-circle" class="w-3 h-3"></i> Testimoni</div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-2.5">Apa Kata <span class="gradient-text">Pelanggan Kami</span></h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 reveal">
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                <div class="flex gap-0.5 mb-2.5"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i></div>
+                <p class="text-[12px] text-gray-600 leading-relaxed mb-4">"Paket Hemat cocok banget untuk anak belajar online. Koneksi stabil dari pagi sampai malam, harganya sangat terjangkau!"</p>
+                <div class="flex items-center gap-2"><div class="w-7 h-7 bg-brand-100 rounded-full flex items-center justify-center"><span class="text-[10px] font-bold text-brand-600">SA</span></div><div><p class="text-[12px] font-semibold text-gray-900">Siti Aminah</p><p class="text-[10px] text-gray-400">Ibu Rumah Tangga</p></div></div>
+            </div>
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                <div class="flex gap-0.5 mb-2.5"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i></div>
+                <p class="text-[12px] text-gray-600 leading-relaxed mb-4">"Sudah pakai LANGEO NET, jarang putus. Kalau ada masalah, CS-nya cepat responsnya via WhatsApp."</p>
+                <div class="flex items-center gap-2"><div class="w-7 h-7 bg-green-100 rounded-full flex items-center justify-center"><span class="text-[10px] font-bold text-green-600">BR</span></div><div><p class="text-[12px] font-semibold text-gray-900">Budi Raharjo</p><p class="text-[10px] text-gray-400">Freelancer</p></div></div>
+            </div>
+            <div class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                <div class="flex gap-0.5 mb-2.5"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-amber-400"></i></div>
+                <p class="text-[12px] text-gray-600 leading-relaxed mb-4">"50rb sebulan bisa internetan puas untuk browsing dan sosmed. Sangat worth it!"</p>
+                <div class="flex items-center gap-2"><div class="w-7 h-7 bg-purple-100 rounded-full flex items-center justify-center"><span class="text-[10px] font-bold text-purple-600">DP</span></div><div><p class="text-[12px] font-semibold text-gray-900">Dedi Pratama</p><p class="text-[10px] text-gray-400">Pelajar</p></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="py-16 lg:py-24 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="relative bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 rounded-2xl overflow-hidden reveal">
+            <div class="absolute top-0 right-0 w-52 h-52 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:36px 36px"></div>
+            <div class="absolute top-5 left-8 float-1 opacity-10 pointer-events-none"><i data-lucide="wifi" class="w-8 h-8 text-white"></i></div>
+            <div class="absolute bottom-5 right-8 float-3 opacity-10 pointer-events-none"><i data-lucide="router" class="w-8 h-8 text-white"></i></div>
+            <div class="relative z-10 px-6 py-12 lg:px-12 lg:py-14 text-center">
+                <div class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white/90 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-4 border border-white/10"><i data-lucide="sparkles" class="w-3 h-3"></i> Mulai Sekarang</div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3 max-w-lg mx-auto leading-tight">Siap Merasakan Internet yang Benar-Benar Hemat?</h2>
+                <p class="text-sm text-white/70 mb-8 max-w-sm mx-auto">Bergabung sekarang. Cuma Rp50.000/bulan!</p>
+                <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20daftar%20Paket%20Hemat%20Rp50.000" target="_blank" class="btn-shine inline-flex items-center justify-center gap-2 bg-white text-brand-700 font-bold px-7 py-3 rounded-xl hover:bg-brand-50 transition-all shadow-xl hover:scale-[1.02]">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Daftar via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KONTAK ========== -->
+<section id="kontak" class="py-16 lg:py-24 bg-gray-50/80">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="text-center max-w-md mx-auto mb-12 reveal">
+            <div class="inline-flex items-center gap-1.5 bg-brand-50 text-brand-600 text-[11px] font-semibold px-3 py-1.5 rounded-full mb-3"><i data-lucide="map-pin" class="w-3 h-3"></i> Hubungi Kami</div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight mb-2.5">Ada Pertanyaan? <span class="gradient-text">Chat Langsung</span></h2>
+            <p class="text-[13px] text-gray-500 leading-relaxed">Klik tombol di bawah untuk langsung terhubung dengan tim kami.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto reveal">
+            <a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20bertanya" target="_blank" class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center group">
+                <div class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-green-100 transition-colors"><i data-lucide="message-circle" class="w-5 h-5 text-green-600"></i></div>
+                <h3 class="text-[13px] font-bold text-gray-900 mb-0.5">WhatsApp</h3>
+                <p class="text-[11px] text-gray-400">0851-8982-6843</p>
+            </a>
+            <a href="mailto:info@langeonet.id" class="card-lift bg-white rounded-xl p-5 border border-gray-100 shadow-sm text-center group">
+                <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-100 transition-colors"><i data-lucide="mail" class="w-5 h-5 text-purple-600"></i></div>
+                <h3 class="text-[13px] font-bold text-gray-900 mb-0.5">Email</h3>
+                <p class="text-[11px] text-gray-400">info@langeonet.id</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="max-w-5xl mx-auto px-5">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mb-10">
+            <!-- Logo + deskripsi -->
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="w-7 h-7 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg flex items-center justify-center">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                    </div>
+                    <span class="text-sm font-bold text-white">LANGEO</span><span class="text-sm font-bold text-brand-400"> NET</span>
+                </div>
+                <p class="text-[12px] text-gray-400 leading-relaxed mb-4 max-w-[220px]">Internet hemat untuk semua. Layanan berkualitas dengan harga terjangkau.</p>
+                <!-- CUMA 1 LOGO: WhatsApp -->
+                <a href="https://wa.me/6285189826843" target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-[12px] font-semibold px-4 py-2 rounded-lg transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+            <!-- Layanan -->
+            <div>
+                <h4 class="text-[11px] font-semibold text-white mb-3 uppercase tracking-wider">Layanan</h4>
+                <ul class="space-y-2"><li><a href="#" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">Internet Rumah</a></li><li><a href="#" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">WiFi 4 Setup</a></li><li><a href="#" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">Instalasi</a></li></ul>
+            </div>
+            <!-- Bantuan -->
+            <div>
+                <h4 class="text-[11px] font-semibold text-white mb-3 uppercase tracking-wider">Bantuan</h4>
+                <ul class="space-y-2"><li><a href="#" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">FAQ</a></li><li><a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20ingin%20lapor%20gangguan" target="_blank" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">Lapor Gangguan</a></li><li><a href="https://wa.me/6285189826843?text=Halo%20LANGEO%20NET%2C%20saya%20butuh%20bantuan" target="_blank" class="text-[12px] text-gray-400 hover:text-brand-400 transition-colors">Hubungi CS</a></li></ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p class="text-[10px] text-gray-500">&copy; 2026 LANGEO NET. All rights reserved.</p>
+            <div class="flex items-center gap-1.5 text-[10px] text-gray-500">
+                <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span></span>
+                Semua sistem beroperasi normal
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to top -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-5 right-5 w-10 h-10 bg-white border border-gray-200 rounded-xl shadow-md flex items-center justify-center text-gray-400 hover:text-brand-600 hover:border-brand-200 transition-all duration-300 opacity-0 translate-y-3 pointer-events-none z-50">
+    <i data-lucide="chevron-up" class="w-4 h-4"></i>
+</button>
+
+<script>
+lucide.createIcons();
+
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('nav-scrolled',window.scrollY>20));
+
+let mo=false;
+const mm=document.getElementById('mobile-menu');
+const iconMenu=document.getElementById('icon-menu');
+const iconClose=document.getElementById('icon-close');
+const menuBtn=document.getElementById('menu-btn');
+
+menuBtn.addEventListener('click',()=>{
+    mo=!mo;
+    mm.classList.toggle('open',mo);
+    iconMenu.classList.toggle('hidden',mo);
+    iconClose.classList.toggle('hidden',!mo);
+    if(mo){menuBtn.style.background='#e0f2fe';menuBtn.style.borderColor='#38bdf8'}
+    else{menuBtn.style.background='';menuBtn.style.borderColor=''}
+});
+
+function closeMenu(){
+    mo=false;mm.classList.remove('open');iconMenu.classList.remove('hidden');iconClose.classList.add('hidden');menuBtn.style.background='';menuBtn.style.borderColor='';
+}
+
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+    const s=window.scrollY>400;
+    btt.classList.toggle('opacity-0',!s);btt.classList.toggle('translate-y-3',!s);btt.classList.toggle('pointer-events-none',!s);
+    btt.classList.toggle('opacity-100',s);btt.classList.toggle('translate-y-0',s);
+});
+
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+    let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});
+    document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+        a.classList.remove('text-brand-600','bg-brand-50');
+        if(a.getAttribute('href')==='#'+c)a.classList.add('text-brand-600','bg-brand-50');
+    });
+});
+</script>
+</body>
+</html>
