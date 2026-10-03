@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LANGEO NET — Internet Hemat untuk Semua</title>
-    <link rel="icon" type="image/png" href="/logo.png">
-    <link rel="shortcut icon" type="image/png" href="/logo.png">
-    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="icon" type="image/png" href="/logo.png?v=2">
+    <link rel="shortcut icon" type="image/png" href="/logo.png?v=2">
+    <link rel="apple-touch-icon" href="/logo.png?v=2">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -88,6 +88,10 @@
             .mobile-only-btn { display: inline-flex !important; }
         }
     </style>
+<style>
+/* Logo LANGEO NET: paksa gambar berbentuk bulat walaupun file logo.png berbentuk kotak. */
+#navbar a[href="#"] img[alt="Logo LANGEO NET"], footer img[alt="Logo LANGEO NET"] { border-radius: 50%; clip-path: circle(50% at 50% 50%); }
+</style>
 </head>
 <body class="bg-white text-gray-800 overflow-x-hidden">
 
@@ -96,8 +100,8 @@
     <div class="max-w-5xl mx-auto px-5">
         <div class="flex items-center justify-between h-16">
             <a href="#" class="flex items-center gap-2">
-                <div class="relative w-8 h-8 flex items-center justify-center">
-                    <img src="/logo.png" alt="Logo LANGEO NET" class="w-8 h-8 object-contain" onerror="this.onerror=null;this.src='logo.png'">
+                <div class="relative w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
+                    <img src="/logo.png?v=2" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=2'">
                 </div>
                 <span class="text-base font-bold text-gray-900">LANGEO</span><span class="text-base font-bold gradient-text"> NET</span>
             </a>
@@ -592,8 +596,8 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mb-10">
             <div>
                 <div class="flex items-center gap-2 mb-3">
-                    <div class="w-9 h-9 flex items-center justify-center flex-shrink-0">
-                        <img src="/logo.png" alt="Logo LANGEO NET" class="w-full h-full object-contain" onerror="this.onerror=null;this.src='logo.png'">
+                    <div class="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
+                        <img src="/logo.png?v=2" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=2'">
                     </div>
                     <span class="text-sm font-bold text-white">LANGEO</span><span class="text-sm font-bold text-brand-400"> NET</span>
                 </div>
@@ -723,4 +727,4 @@ document.querySelectorAll('.faq-trigger').forEach(trigger => {
 });
 </script>
 </body>
-</html>
+</html></html>
