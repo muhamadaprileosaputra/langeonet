@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LANGEO NET — Internet Hemat untuk Semua</title>
-    <link rel="icon" type="image/png" href="/logo.png?v=2">
-    <link rel="shortcut icon" type="image/png" href="/logo.png?v=2">
-    <link rel="apple-touch-icon" href="/logo.png?v=2">
+    <link rel="icon" type="image/png" href="/logo.png?v=3">
+    <link rel="shortcut icon" type="image/png" href="/logo.png?v=3">
+    <link rel="apple-touch-icon" href="/logo.png?v=3">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@
         <div class="flex items-center justify-between h-16">
             <a href="#" class="flex items-center gap-2">
                 <div class="relative w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
-                    <img src="/logo.png?v=2" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=2'">
+                    <img src="/logo.png?v=3" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=3'">
                 </div>
                 <span class="text-base font-bold text-gray-900">LANGEO</span><span class="text-base font-bold gradient-text"> NET</span>
             </a>
@@ -382,8 +382,12 @@
                         <line x1="160" y1="115" x2="160" y2="205" stroke="#bae6fd" stroke-width="1.5" stroke-dasharray="5 4" class="dash-animate"/>
                         <circle cx="160" cy="115" r="22" fill="url(#cg)"/>
                         <circle cx="160" cy="115" r="30" fill="none" stroke="#0ea5e9" stroke-width="1" opacity="0.2" class="pulse-ring"/>
-                        <text x="160" y="112" text-anchor="middle" fill="white" font-size="8" font-weight="700" font-family="Inter">LANGEO</text>
-                        <text x="160" y="122" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7" font-family="Inter">NET</text>
+                        <defs>
+                            <clipPath id="centerLogoClip"><circle cx="160" cy="115" r="17"/></clipPath>
+                        </defs>
+                        <image href="/logo.png?v=3" x="143" y="98" width="34" height="34" preserveAspectRatio="xMidYMid slice" clip-path="url(#centerLogoClip)" onerror="this.setAttribute('href','logo.png?v=3')"/>
+                        <rect x="132" y="148" width="56" height="15" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="0.8"/>
+                        <text x="160" y="158" text-anchor="middle" fill="#0f172a" font-size="6.5" font-weight="700" font-family="Inter, sans-serif">LANGEO NET</text>
                         <circle cx="60" cy="45" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="60" y="49" text-anchor="middle" font-size="12">📶</text>
                         <circle cx="260" cy="45" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="260" y="49" text-anchor="middle" font-size="12">💻</text>
                         <circle cx="160" cy="30" r="15" fill="white" stroke="#e0f2fe" stroke-width="1.5"/><text x="160" y="34" text-anchor="middle" font-size="12">📱</text>
@@ -597,7 +601,7 @@
             <div>
                 <div class="flex items-center gap-2 mb-3">
                     <div class="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
-                        <img src="/logo.png?v=2" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=2'">
+                        <img src="/logo.png?v=3" alt="Logo LANGEO NET" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null;this.src='logo.png?v=3'">
                     </div>
                     <span class="text-sm font-bold text-white">LANGEO</span><span class="text-sm font-bold text-brand-400"> NET</span>
                 </div>
@@ -727,4 +731,4 @@ document.querySelectorAll('.faq-trigger').forEach(trigger => {
 });
 </script>
 </body>
-</html></html>
+</html>
