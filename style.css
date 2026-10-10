@@ -1,0 +1,67 @@
+
+        *{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+        @keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+        @keyframes pulse-ring{0%,100%{transform:scale(.92);opacity:.45}50%{transform:scale(1.06);opacity:.12}}
+        @keyframes signal-wave{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.2);opacity:0}}
+        @keyframes dash{to{stroke-dashoffset:-20}}
+
+        .float-1{animation:float 4s ease-in-out infinite}
+        .float-2{animation:float2 5s ease-in-out infinite .4s}
+        .float-3{animation:float3 6s ease-in-out infinite .8s}
+        .pulse-ring{animation:pulse-ring 3s ease-in-out infinite}
+        .signal-wave-1{animation:signal-wave 2s ease-out infinite}
+        .signal-wave-2{animation:signal-wave 2s ease-out infinite .6s}
+        .signal-wave-3{animation:signal-wave 2s ease-out infinite 1.2s}
+        .dash-animate{animation:dash 1.5s linear infinite}
+
+        .gradient-text{background:linear-gradient(135deg,#0ea5e9,#0284c7,#0369a1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .dot-bg{background-image:radial-gradient(rgba(14,165,233,.05) 1px,transparent 1px);background-size:22px 22px}
+        .grid-bg{background-image:linear-gradient(rgba(14,165,233,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,.025) 1px,transparent 1px);background-size:36px 36px}
+
+        .card-lift{transition:transform .35s ease,box-shadow .35s ease}
+        .card-lift:hover{transform:translateY(-5px);box-shadow:0 16px 40px -10px rgba(14,165,233,.16)}
+
+        .nav-scrolled{background:rgba(255,255,255,.97)!important;backdrop-filter:blur(14px);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+
+        .btn-shine{position:relative;overflow:hidden}
+        .btn-shine::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-25deg);transition:left .55s ease}
+        .btn-shine:hover::after{left:120%}
+
+        .mobile-menu{max-height:0;overflow:hidden;visibility:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s ease;opacity:0}
+        .mobile-menu.open{max-height:500px;opacity:1;visibility:visible}
+        .menu-btn-burger{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#f0f9ff;border:1.5px solid #bae6fd;cursor:pointer;transition:all .2s ease}
+        .menu-btn-burger:hover{background:#e0f2fe;border-color:#7dd3fc}
+        .menu-btn-burger:active{transform:scale(.93);background:#bae6fd}
+        .mobile-menu a.menu-link{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:500;color:#374151;transition:all .2s ease}
+        .mobile-menu a.menu-link:hover,.mobile-menu a.menu-link:active{background:#f0f9ff;color:#0284c7}
+        .mobile-menu a.menu-link i{width:18px;height:18px;color:#0ea5e9;flex-shrink:0}
+
+        .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+
+        /* Highlight paket saat di-scroll ke */
+        @keyframes highlight-glow{
+            0%,100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}
+            50%{box-shadow:0 0 0 12px rgba(14,165,233,.15)}
+        }
+        .paket-highlight{animation:highlight-glow 1.2s ease-in-out 3}
+
+        /* CSS Accordion untuk FAQ */
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .35s ease}
+        .faq-item.active .faq-answer{max-height:250px;padding-top:12px}
+        .faq-item.active .faq-icon{transform:rotate(180deg)}
+
+        /* Paksa tampilan menu garis tiga di semua perangkat sentuh */
+        @media (hover: none) and (pointer: coarse) {
+            .desktop-nav { display: none !important; }
+            .mobile-only-btn { display: inline-flex !important; }
+        }
+    
+
+
+/* Logo LANGEO NET: paksa gambar berbentuk bulat walaupun file logo.png berbentuk kotak. */
+#navbar a[href="#"] img[alt="Logo LANGEO NET"], footer img[alt="Logo LANGEO NET"] { border-radius: 50%; clip-path: circle(50% at 50% 50%); }

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://langeonet.my.id/sitemap.xml
